@@ -1,5 +1,128 @@
 var simplifiedMachineData = {
-	"machineEarth":
+	"machinePlayer": {
+	    baseStats: [0,0, ["PowerMan", "PowerConstruction", "PowerLogistic", "PowerCraft", "Health"]],
+        recipes: {
+            defaultProduction: {
+                baseStats: [0.1, 1, true, false],
+                in: [],
+                out: [ //TODO: make nonblock
+                    ["PowerMan", 1, 30],
+                    ["PowerCraft", 1, 1800],
+                    ["Health", 0.01, 1],
+                ],
+                lock: ["PowerMan", 0],
+            },
+            createConstruction: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["PowerMan", 1, 0],
+                ],
+                out: [
+                    ["PowerConstruction", 1, 30],
+                ],
+                lock: ["PowerMan", 1],
+            },
+            createLogistic: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["PowerMan", 1, 0],
+                ],
+                out: [
+                    ["PowerLogistic", 1, 30],
+                ],
+                lock: ["PowerMan", 1],
+            },
+        }
+    },
+    "machineLab": {
+        baseStats: [0,0, ["Science1", "Science2", "Science3", "Science4", "Science5", "Science6", "Science7"]],
+        makeSci1: {
+            baseStats: [1, 1, true, true],
+            in: [
+                ["IronGear", 1, 0],
+                ["CopperPlate", 1, 0],
+                ["PowerCraft", 5, 0],
+            ],
+            out: [
+                ["Science1", 1, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+            ],
+            lock: ["PowerMan", 1],
+        },
+        makeSci2: {
+            baseStats: [1, 1, true, true],
+            in: [
+                ["Science1", 1, 0],
+                ["Inserter1", 1, 0],
+                ["IronGear", 0.5, 0],
+                ["IronPlate", 0.5, 0],
+                ["PowerCraft", 6.25, 0],
+            ],
+            out: [
+                ["Science2", 1, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+            ],
+            lock: ["Science1", 75, "PowerLab", 75*5],
+        },
+        makeSci3: {
+            baseStats: [1, 1, true, true],
+            in: [
+                ["Coal", 10, 0],
+                ["CopperPlate", 5, 0],
+                ["IronPlate", 9, 0],
+                ["Steel", 1, 0],
+                ["StoneBrick", 10, 0],
+                ["PowerCraft", 23, 0],
+            ],
+            out: [
+                ["Science3", 2, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+            ],
+            lock: ["Science1", 10, "Science2", 50, "PowerLab", 60*15],
+        },
+        makeSci4: {
+            baseStats: [1, 1, true, true],
+            in: [
+                ["Science2", 2, 0],
+                ["Circuit2", 3, 0],
+                ["Engine", 2, 0],
+                ["OilFuel", 1, 0],
+                ["PowerCraft", 24, 0],
+            ],
+            out: [
+                ["Science4", 2, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+            ],
+            lock: ["Science2", 75, "PowerLab", 75*10],
+        },
+        makeSci5: {
+            baseStats: [1, 1, true, true],
+            in: [
+                ["Furnace3", 1, 0],
+                ["ModuleProductivity1", 1, 0],
+                ["Steel", 15, 0],
+                ["IronPlate", 7.5, 0],
+                ["Stone", 15, 0],
+                ["PowerCraft", 0.75*15+21, 0],
+            ],
+            out: [
+                ["Science5", 3, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+            ],
+            lock: ["Science4", 100, "Science2", 75, "PowerLab", 175*30],
+        },
+        makeSci6: {
+            baseStats: [1, 1, true, true],
+            in: [
+                ["Science4", 3, 0]
+                ["BotFrame", 1, 0],
+                ["LowDensityStructure", 3, 0],
+                ["Circuit3", 2, 0],
+                ["PowerCraft", 21, 0],
+            ],
+            out: [
+                ["Science6", 3, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+            ],
+            lock: ["Science4", 100, "PowerLab", 100*30],
+        },
+    },
+	
+	/*"machineEarth":
 	{
 		baseStats: [100, 100, "Earth"],
 		recipes:
@@ -5096,7 +5219,7 @@ var pureCircle = {
 					lock: ["SterileGlass", 21],
 				},
 			}
-		},
+		},*/
 	},
 	preprocess: function ()
 	{
