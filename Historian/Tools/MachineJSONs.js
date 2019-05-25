@@ -18,7 +18,7 @@ var simplifiedMachineData = {
                     ["PowerMan", 1, 0],
                 ],
                 out: [
-                    ["PowerConstruction", 1, 30],
+                    ["PowerConstruction", 1000, 30e3],
                 ],
                 lock: ["PowerMan", 1],
             },
@@ -34,91 +34,309 @@ var simplifiedMachineData = {
             },
         }
     },
+    "helper": {
+        baseStats: [0,0, ["Fuel", ]],
+        recipes: {
+            
+        }
+    },
     "machineLab": {
         baseStats: [0,0, ["Science1", "Science2", "Science3", "Science4", "Science5", "Science6", "Science7"]],
-        makeSci1: {
-            baseStats: [1, 1, true, true],
-            in: [
-                ["IronGear", 1, 0],
-                ["CopperPlate", 1, 0],
-                ["PowerCraft", 5, 0],
-            ],
-            out: [
-                ["Science1", 1, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
-            ],
-            lock: ["PowerMan", 1],
-        },
-        makeSci2: {
-            baseStats: [1, 1, true, true],
-            in: [
-                ["Science1", 1, 0],
-                ["Inserter1", 1, 0],
-                ["IronGear", 0.5, 0],
-                ["IronPlate", 0.5, 0],
-                ["PowerCraft", 6.25, 0],
-            ],
-            out: [
-                ["Science2", 1, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
-            ],
-            lock: ["Science1", 75, "PowerLab", 75*5],
-        },
-        makeSci3: {
-            baseStats: [1, 1, true, true],
-            in: [
-                ["Coal", 10, 0],
-                ["CopperPlate", 5, 0],
-                ["IronPlate", 9, 0],
-                ["Steel", 1, 0],
-                ["StoneBrick", 10, 0],
-                ["PowerCraft", 23, 0],
-            ],
-            out: [
-                ["Science3", 2, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
-            ],
-            lock: ["Science1", 10, "Science2", 50, "PowerLab", 60*15],
-        },
-        makeSci4: {
-            baseStats: [1, 1, true, true],
-            in: [
-                ["Science2", 2, 0],
-                ["Circuit2", 3, 0],
-                ["Engine", 2, 0],
-                ["OilFuel", 1, 0],
-                ["PowerCraft", 24, 0],
-            ],
-            out: [
-                ["Science4", 2, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
-            ],
-            lock: ["Science2", 75, "PowerLab", 75*10],
-        },
-        makeSci5: {
-            baseStats: [1, 1, true, true],
-            in: [
-                ["Furnace3", 1, 0],
-                ["ModuleProductivity1", 1, 0],
-                ["Steel", 15, 0],
-                ["IronPlate", 7.5, 0],
-                ["Stone", 15, 0],
-                ["PowerCraft", 0.75*15+21, 0],
-            ],
-            out: [
-                ["Science5", 3, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
-            ],
-            lock: ["Science4", 100, "Science2", 75, "PowerLab", 175*30],
-        },
-        makeSci6: {
-            baseStats: [1, 1, true, true],
-            in: [
-                ["Science4", 3, 0]
-                ["BotFrame", 1, 0],
-                ["LowDensityStructure", 3, 0],
-                ["Circuit3", 2, 0],
-                ["PowerCraft", 21, 0],
-            ],
-            out: [
-                ["Science6", 3, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
-            ],
-            lock: ["Science4", 100, "PowerLab", 100*30],
+        recipes: {
+            makeSci1: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["IronGear", 1, 0],
+                    ["CopperPlate", 1, 0],
+                    ["PowerCraft", 5, 0],
+                ],
+                out: [
+                    ["Science1", 1, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["PowerMan", 1],
+            },
+            makeSci2: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["Science1", 1, 0],
+                    ["Inserter1", 1, 0],
+                    ["IronGear", 0.5, 0],
+                    ["IronPlate", 0.5, 0],
+                    ["PowerCraft", 6.25, 0],
+                ],
+                out: [
+                    ["Science2", 1, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Science1", 75, "PowerLab", 75*5],
+            },
+            makeSci3: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["Coal", 10, 0],
+                    ["CopperPlate", 5, 0],
+                    ["IronPlate", 9, 0],
+                    ["Steel", 1, 0],
+                    ["StoneBrick", 10, 0],
+                    ["PowerCraft", 23, 0],
+                ],
+                out: [
+                    ["Science3", 2, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Science1", 10, "Science2", 50, "PowerLab", 60*15],
+            },
+            makeSci4: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["Science2", 2, 0],
+                    ["Circuit2", 3, 0],
+                    ["Engine", 2, 0],
+                    ["OilFuel", 1, 0],
+                    ["PowerCraft", 24, 0],
+                ],
+                out: [
+                    ["Science4", 2, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Science2", 75, "PowerLab", 75*10],
+            },
+            makeSci5: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["Furnace3", 1, 0],
+                    ["ModuleProductivity1", 1, 0],
+                    ["Steel", 15, 0],
+                    ["IronPlate", 7.5, 0],
+                    ["Stone", 15, 0],
+                    ["PowerCraft", 0.75*15+21, 0],
+                ],
+                out: [
+                    ["Science5", 3, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Science4", 100, "Science2", 75, "PowerLab", 175*30],
+            },
+            makeSci6: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["Science4", 3, 0]
+                    ["BotFrame", 1, 0],
+                    ["LowDensityStructure", 3, 0],
+                    ["Circuit3", 2, 0],
+                    ["PowerCraft", 21, 0],
+                ],
+                out: [
+                    ["Science6", 3, 200, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Science4", 100, "PowerLab", 100*30],
+            },
+        }
+    },
+    "ironPatch": { //assuming 5000 avg. iron per tile
+        baseStats: [0,0, ["IronLeft", "IronMiner1", "IronMiner2", "IronOre"]],
+        recipes: {
+            manualMine: {
+                baseStats: [1, 1, true, false],
+                in: [
+                    ["Manpower", 1, 0],
+                ],
+                out: [
+                    ["IronOre", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+            },
+            allocateMiner1: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["IronGear", 3, 0],
+                    ["IronPlate", 3, 0],
+                    ["Furnace1", 1, 0],
+                    ["PowerCraft", 2, 0],
+                    ["PowerConstruction", 1, 0],
+                ],
+                out: [
+                    ["IronMiner1", 1, 1e300],
+                ],
+                lock: ["Manpower", 1],
+            },
+            miner1Mine: {
+                baseStats: [1, 0.25, true, true],
+                in: [
+                    ["Fuel", 0.15, 0],
+                    ["IronMiner1", 1, 0],
+                    ["IronLeft", 5000*6, 0],
+                ],
+                out: [
+                    ["IronMiner1", 4, 1e300],
+                    ["IronLeft", 5000*6*4-1, 1e300],
+                    ["IronOre", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Manpower", 1],
+            },
+            allocateMiner2: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["IronGear", 5, 0],
+                    ["IronPlate", 10, 0],
+                    ["Circuit1", 3, 0],
+                    ["PowerCraft", 2, 0],
+                    ["PowerConstruction", 1, 0],
+                ],
+                out: [
+                    ["IronMiner2", 1, 1e300],
+                ],
+                lock: ["Energy", 1],
+            },
+            miner2Mine: {
+                baseStats: [1, 0.5, true, true],
+                in: [
+                    ["Energy", 0.09, 0],
+                    ["IronMiner2", 1, 0],
+                    ["IronLeft", 5000*15, 0],
+                ],
+                out: [
+                    ["IronMiner2", 2, 1e300],
+                    ["IronLeft", 5000*15*2-1, 1e300],
+                    ["IronOre", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Energy", 1],
+            },
+        }
+    },
+    "copperPatch": {
+        baseStats: [0,0, ["CopperLeft", "CopperMiner1", "CopperMiner2", "CopperOre"]],
+        recipes: {
+            manualMine: {
+                baseStats: [1, 1, true, false],
+                in: [
+                    ["Manpower", 1, 0],
+                ],
+                out: [
+                    ["CopperOre", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+            },
+            allocateMiner1: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["CopperGear", 3, 0],
+                    ["CopperPlate", 3, 0],
+                    ["Furnace1", 1, 0],
+                    ["PowerCraft", 2, 0],
+                    ["PowerConstruction", 1, 0],
+                ],
+                out: [
+                    ["CopperMiner1", 1, 1e300],
+                ],
+                lock: ["Manpower", 1],
+            },
+            miner1Mine: {
+                baseStats: [1, 0.25, true, true],
+                in: [
+                    ["Fuel", 0.15, 0],
+                    ["CopperMiner1", 1, 0],
+                    ["CopperLeft", 5000*6, 0],
+                ],
+                out: [
+                    ["CopperMiner1", 4, 1e300],
+                    ["CopperLeft", 5000*6*4-1, 1e300],
+                    ["CopperOre", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Manpower", 1],
+            },
+            allocateMiner2: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["CopperGear", 5, 0],
+                    ["CopperPlate", 10, 0],
+                    ["Circuit1", 3, 0],
+                    ["PowerCraft", 2, 0],
+                    ["PowerConstruction", 1, 0],
+                ],
+                out: [
+                    ["CopperMiner2", 1, 1e300],
+                ],
+                lock: ["Energy", 1],
+            },
+            miner2Mine: {
+                baseStats: [1, 0.5, true, true],
+                in: [
+                    ["Energy", 0.09, 0],
+                    ["CopperMiner2", 1, 0],
+                    ["CopperLeft", 5000*15, 0],
+                ],
+                out: [
+                    ["CopperMiner2", 2, 1e300],
+                    ["CopperLeft", 5000*15*2-1, 1e300],
+                    ["CopperOre", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Energy", 1],
+            },
+        }
+    },
+    "stonePatch": {
+        baseStats: [0,0, ["StoneLeft", "StoneMiner1", "StoneMiner2", "Stone"]],
+        recipes: {
+            manualMine: {
+                baseStats: [1, 1, true, false],
+                in: [
+                    ["Manpower", 1, 0],
+                ],
+                out: [
+                    ["Stone", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+            },
+            allocateMiner1: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["StoneGear", 3, 0],
+                    ["StonePlate", 3, 0],
+                    ["Furnace1", 1, 0],
+                    ["PowerCraft", 2, 0],
+                    ["PowerConstruction", 1, 0],
+                ],
+                out: [
+                    ["StoneMiner1", 1, 1e300],
+                ],
+                lock: ["Manpower", 1],
+            },
+            miner1Mine: {
+                baseStats: [1, 0.25, true, true],
+                in: [
+                    ["Fuel", 0.15, 0],
+                    ["StoneMiner1", 1, 0],
+                    ["StoneLeft", 5000*6, 0],
+                ],
+                out: [
+                    ["StoneMiner1", 4, 1e300],
+                    ["StoneLeft", 5000*6*4-1, 1e300],
+                    ["Stone", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Manpower", 1],
+            },
+            allocateMiner2: {
+                baseStats: [1, 1, true, true],
+                in: [
+                    ["StoneGear", 5, 0],
+                    ["StonePlate", 10, 0],
+                    ["Circuit1", 3, 0],
+                    ["PowerCraft", 2, 0],
+                    ["PowerConstruction", 1, 0],
+                ],
+                out: [
+                    ["StoneMiner2", 1, 1e300],
+                ],
+                lock: ["Energy", 1],
+            },
+            miner2Mine: {
+                baseStats: [1, 0.5, true, true],
+                in: [
+                    ["Energy", 0.09, 0],
+                    ["StoneMiner2", 1, 0],
+                    ["StoneLeft", 5000*15, 0],
+                ],
+                out: [
+                    ["StoneMiner2", 2, 1e300],
+                    ["StoneLeft", 5000*15*2-1, 1e300],
+                    ["Stone", 1, 50, 48, ["Steel", 8, "AdvancedChest", 47]],
+                ],
+                lock: ["Energy", 1],
+            },
         },
     },
 	
